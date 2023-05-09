@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from "formik";
 
-const FormularioBusqueda = (eventoBusqueda) => {
+const FormularioBusqueda = ({ eventoBusqueda }) => {
 	return (
 		<div id='formularioBusqueda'>
 			<h2>Buscador</h2>
