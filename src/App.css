@@ -3,6 +3,10 @@
     flex-direction: row;
 }
 
+#formularioBusqueda input {
+    width: 100%;
+}
+
 #formulario-registro input {
     width: calc(100% - 20px)
 }
