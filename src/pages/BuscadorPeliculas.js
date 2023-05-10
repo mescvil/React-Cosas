@@ -76,12 +76,15 @@ function BuscadorPeliculas() {
 		<div id='buscador'>
 			<h1>🎞 OMDb API</h1>
 			<FormularioBusqueda eventoBusqueda={eventoBusquedaPelicula} />
-			<NavPaginacion
-				anteriorPaginaClick={anteriorPaginaClick}
-				siguienePaginaClick={siguienePaginaClick}
-				paginas={totalPaginas}
-				paginaActual={paginaActual}
-			/>
+
+			{ultimoBuscado && (
+				<NavPaginacion
+					anteriorPaginaClick={anteriorPaginaClick}
+					siguienePaginaClick={siguienePaginaClick}
+					paginas={totalPaginas}
+					paginaActual={paginaActual}
+				/>
+			)}
 			<section>
 				{peliculas?.map((pelicula) => (
 					<Pelicula

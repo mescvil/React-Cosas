@@ -16,6 +16,17 @@
     width: 100%;
 }
 
+.label-error {
+    display: flex;
+    flex-direction: row;
+}
+
+.label-error {
+    color: brown;
+    font-size: smaller;
+    padding-bottom: 5px;
+}
+
 .radiales {
     display: flex;
     flex-direction: row;
@@ -63,4 +74,11 @@ nav a {
 nav a:hover {
     background-color: var(--background);
     text-decoration: none;
+}
+
+#nav-paginacion {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

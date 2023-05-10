@@ -3,7 +3,7 @@ const NavPaginacion = (props) => {
 		props;
 
 	return (
-		<div>
+		<div id='nav-paginacion'>
 			<button
 				onClick={anteriorPaginaClick}
 				disabled={paginaActual === 1}
