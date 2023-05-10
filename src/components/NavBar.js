@@ -8,7 +8,7 @@ const NavBar = () => {
 					<Link to='/'>🏠 Inicio</Link>
 				</li>
 				<li>
-					<Link to='/formulario'>📝 Registro</Link>
+					<Link to='/formulario'>📝 Contacto</Link>
 				</li>
 			</ul>
 		</nav>
