@@ -35,6 +35,7 @@ function App() {
 
 	return (
 		<main>
+			<h1>🎞 OMDb API</h1>
 			<FormularioBusqueda eventoBusqueda={eventoBusquedaPelicula} />
 			<section>
 				{peliculas?.map((pelicula) => (
