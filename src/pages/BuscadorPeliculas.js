@@ -1,14 +1,12 @@
 import { useState } from "react";
-import FormularioBusqueda from "./components/Formulario";
+import FormularioBusqueda from "../components/FormularioBusqueda";
 import axios from "axios";
-import Pelicula from "./components/Pelicula";
+import Pelicula from "../components/Pelicula";
 import { useAlert } from "react-alert";
-
-import "./App.css";
 
 const URL_BASE = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=`;
 
-function App() {
+function BuscadorPeliculas() {
 	const [peliculas, setPeliculas] = useState([]);
 	const alert = useAlert();
 
@@ -34,7 +32,7 @@ function App() {
 	};
 
 	return (
-		<main>
+		<div id='buscador'>
 			<h1>🎞 OMDb API</h1>
 			<FormularioBusqueda eventoBusqueda={eventoBusquedaPelicula} />
 			<section>
@@ -45,8 +43,8 @@ function App() {
 					/>
 				))}
 			</section>
-		</main>
+		</div>
 	);
 }
 
-export default App;
+export default BuscadorPeliculas;

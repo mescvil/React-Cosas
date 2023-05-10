@@ -1,12 +1,21 @@
-main {}
-
 #formularioBusqueda form {
     display: flex;
     flex-direction: row;
 }
 
-#formularioBusqueda input {
+#formulario-registro input {
+    width: calc(100% - 20px)
+}
+
+#formulario-registro button {
+    margin-top: 8px;
     width: 100%;
+}
+
+.radiales {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
 }
 
 .tarjeta-pelicula {
@@ -22,4 +31,32 @@ main {}
 .tarjeta-pelicula img {
     border-radius: 8px;
     min-width: 55%;
+}
+
+nav {
+    padding: 16px 0;
+    border-radius: 8px;
+    background-color: var(--background-alt);
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+}
+
+nav a {
+    color: var(--text-main);
+    text-align: center;
+    padding: 16px 16px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: var(--background);
+    text-decoration: none;
 }
