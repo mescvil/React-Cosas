@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormularioBusqueda from "../components/FormularioBusqueda";
 import axios from "axios";
 import Pelicula from "../components/Pelicula";
 import NavPaginacion from "../components/NavPaginacion";
 import { useAlert } from "react-alert";
 
-const URL_BASE = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=`;
+const URL_BASE = `https://www.omdbapi.com/?type=movie&apikey=${process.env.REACT_APP_API_KEY}&s=`;
 
 const ELEMENTOS_PAGINA = 10;
 let ultimoBuscado;
@@ -13,22 +13,20 @@ let totalPaginas;
 
 function BuscadorPeliculas() {
 	const [peliculas, setPeliculas] = useState([]);
-	const [paginaActual, setPaginaActual] = useState(1);
+	const [paginaActual, setPaginaActual] = useState(0);
+	const alert = useAlert();
 
 	const PAGINACION = `&page=${paginaActual}`;
 
-	const alert = useAlert();
+	useEffect(() => {
+		if (paginaActual === 0) return;
 
-	const buscaPeliculas = (titulo) => {
-		const url = URL_BASE + titulo + PAGINACION;
+		const url = URL_BASE + ultimoBuscado + PAGINACION;
 
 		axios
 			.get(url)
 			.then((respusta) => {
 				const datos = respusta.data;
-
-				console.log(url);
-				console.log(respusta);
 
 				if (!datos.Error) {
 					const datos = respusta.data;
@@ -46,30 +44,19 @@ function BuscadorPeliculas() {
 				console.log(error);
 				alert.show(error.message);
 			});
-	};
+	}, [paginaActual]);
 
 	const eventoBusquedaPelicula = (titulo) => {
-		setPaginaActual(1);
 		ultimoBuscado = titulo;
-		buscaPeliculas(ultimoBuscado);
+		setPaginaActual(1);
 	};
 
 	const siguienePaginaClick = () => {
-		const siguiente = paginaActual;
-
-		if (siguiente <= totalPaginas) {
-			setPaginaActual(paginaActual + 1);
-			buscaPeliculas(ultimoBuscado);
-		}
+		if (paginaActual <= totalPaginas) setPaginaActual(paginaActual + 1);
 	};
 
 	const anteriorPaginaClick = () => {
-		const siguiente = paginaActual;
-
-		if (siguiente - 1 > 0) {
-			setPaginaActual(paginaActual - 1);
-			buscaPeliculas(ultimoBuscado);
-		}
+		if (paginaActual - 1 > 0) setPaginaActual(paginaActual - 1);
 	};
 
 	return (
@@ -77,7 +64,7 @@ function BuscadorPeliculas() {
 			<h1>🎞 OMDb API</h1>
 			<FormularioBusqueda eventoBusqueda={eventoBusquedaPelicula} />
 
-			{ultimoBuscado && (
+			{paginaActual > 0 && (
 				<NavPaginacion
 					anteriorPaginaClick={anteriorPaginaClick}
 					siguienePaginaClick={siguienePaginaClick}
